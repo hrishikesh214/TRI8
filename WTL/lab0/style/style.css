@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;1,400&display=swap");
+
+:root {
+	--code_background: 20;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Fira Sans", sans-serif;
+	box-sizing: border-box;
+	background: whitesmoke;
+	color: black;
+}
+
+body {
+	padding: 1rem;
+	font-size: 1.1rem;
+	display: grid;
+	grid-template-columns: minmax(29vw, 100px) 1fr;
+	grid-template-areas: "sidebar main";
+	gap: 15px;
+}
+sidebar {
+	grid-area: sidebar;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+sidebar {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+sidebar h2 {
+	margin: 1.2rem 0;
+}
+sidebar ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+sidebar li {
+	color: black;
+	text-align: center;
+	margin: 1rem 0;
+}
+
+main {
+	grid-area: main;
+}
+h2 {
+	text-align: center;
+}
+h1 {
+	font-size: 2.7rem;
+	padding: 1rem 0;
+	text-align: center;
+}
+
+code pre {
+	background-color: rgba(
+		var(--code_background),
+		var(--code_background),
+		var(--code_background),
+		0.8
+	);
+	color: white;
+	padding: 1rem;
+	margin: 1rem 0;
+	border-radius: 7px;
+	font-weight: 300;
+}
+
+p {
+	margin: 1rem 0;
+	text-align: justify;
+}
+
+a {
+	color: green;
+	background-color: rgba(0, 255, 0, 0.3);
+	text-decoration: none;
+}

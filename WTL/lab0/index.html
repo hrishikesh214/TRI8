@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WTL Lab0</title>
+		<link rel="stylesheet" href="./style/style.css" />
+	</head>
+	<body>
+		<sidebar>
+			<h2>Sidebar</h2>
+			<div>
+				<ul>
+					<li>item 1</li>
+					<li>item 2</li>
+					<li>item 3</li>
+					<li>item 4</li>
+					<li>item 5</li>
+				</ul>
+			</div>
+		</sidebar>
+		<main>
+			<h1>About Node.js</h1>
+			<p>
+				As an asynchronous event-driven JavaScript runtime, Node.js is
+				designed to build scalable network applications. In the
+				following "hello world" example, many connections can be handled
+				concurrently. Upon each connection, the callback is fired, but
+				if there is no work to be done, Node.js will sleep.
+			</p>
+			<code>
+				<pre>
+const http = require('http');
+
+const hostname = '127.0.0.1';
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World');
+});
+
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
+                </pre>
+			</code>
+			<p>
+				This is in contrast to today's more common concurrency model, in
+				which OS threads are employed. Thread-based networking is
+				relatively inefficient and very difficult to use. Furthermore,
+				users of Node.js are free from worries of dead-locking the
+				process, since there are no locks. Almost no function in Node.js
+				directly performs I/O, so the process never blocks except when
+				the I/O is performed using synchronous methods of Node.js
+				standard library. Because nothing blocks, scalable systems are
+				very reasonable to develop in Node.js.
+			</p>
+			<p>
+				If some of this language is unfamiliar, there is a full article
+				on
+				<a href="./blockVsNonBlock.html">Blocking vs. Non-Blocking</a>.
+			</p>
+			<hr />
+			<p>
+				Node.js is similar in design to, and influenced by, systems like
+				Ruby's Event Machine and Python's Twisted. Node.js takes the
+				event model a bit further. It presents an event loop as a
+				runtime construct instead of as a library. In other systems,
+				there is always a blocking call to start the event-loop.
+				Typically, behavior is defined through callbacks at the
+				beginning of a script, and at the end a server is started
+				through a blocking call like EventMachine::run(). In Node.js,
+				there is no such start-the-event-loop call. Node.js simply
+				enters the event loop after executing the input script. Node.js
+				exits the event loop when there are no more callbacks to
+				perform. This behavior is like browser JavaScript — the event
+				loop is hidden from the user.
+			</p>
+		</main>
+	</body>
+</html>
