@@ -24,6 +24,7 @@ void multiply_matrix(int a[][3], int b[][3], int c[][3], int n)
 {
     for (int i = 0; i < n; i++)
     {
+        #pragma omp parallel for
         for (int j = 0; j < n; j++)
         {
             c[i][j] = 0;
