@@ -10,7 +10,7 @@ using namespace std;
 
 /**
  * @brief Handles Caecar Cypher operations on string
- * 
+ *
  */
 class CaesarCypher
 {
@@ -21,14 +21,14 @@ public:
     CaesarCypher(int _key = 0) : key(_key){};
     /**
      * @brief Set the key for the cypher
-     * @param _key 
+     * @param _key
      */
     void set_key(int _key) { key = _key; };
 
     /**
      * @brief encrypts the string as per the key
-     * 
-     * @param plain_text 
+     *
+     * @param plain_text
      * @return string (cypehr text)
      */
     string encypt(string plain_text)
@@ -53,8 +53,8 @@ public:
 
     /**
      * @brief decrypts the string as per the key
-     * 
-     * @param cipher_text 
+     *
+     * @param cipher_text
      * @return string (plain text)
      */
     string decrypt(string cipher_text)

@@ -1,7 +1,7 @@
 /**
  * @file code.cpp
  * @author PE06 Hrishikesh Vaze
- * @brief HPC - LAB2 - Simple matrix multiplication without parralellism
+ * @brief HPC - LAB2 - Simple matrix multiplication OMP
  */
 
 #include <iostream>
@@ -13,7 +13,7 @@
 using namespace std;
 
 #define MAX_ROWS 500 // max rows of matrix
-#define MAX_COLS 100 // max cols of matrix
+#define MAX_COLS 500 // max cols of matrix
 #define TWIDTH 30    // width of table
 
 double t_start, t_end;               // to store start and end time
@@ -39,6 +39,7 @@ public:
     void clear()
     {
         // initialize all matrix to a value 0
+        // all matrix element are 0
         memset(mat1, 0, sizeof(mat1[0][0]) * MAX_ROWS * MAX_COLS);
         memset(mat2, 0, sizeof(mat2[0][0]) * MAX_ROWS * MAX_COLS);
         memset(mat3, 0, sizeof(mat3[0][0]) * MAX_ROWS * MAX_COLS);
@@ -85,7 +86,7 @@ public:
 
 void calculate_diff(int n)
 {
-    int data_points = n * MAX_COLS;
+    int data_points = n * n;
     Solution ans;
     cout << endl
          << setw(TWIDTH) << data_points;
