@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "../../PrettyTable.h"
+#include <PrettyTable>
 using namespace std;
 
 typedef std::vector<int> int_vec;
@@ -403,6 +403,7 @@ int main()
             encryptor.set_plaintext(temp);
             encryptor.execute();
             encryptor.display();
+            break;
         default:
             cout << endl
                  << "Invalid Choice!";
@@ -412,6 +413,7 @@ int main()
     cout << endl;
     return 0;
 }
+// 1 1 0 1 0 0 0 0 0 1 0 2 1 0 0 1 0 1 1 1
 
 /*
 
@@ -450,5 +452,21 @@ p10(key)    = 1 0 0 0 0 0 1 1 0 0
 !p4(R)          = 1 1 0 1 1 1 1 1
 !XOR(L)         = 0 0 1 0 1 0 1 0
 !ip-1(data)     = 0 0 1 1 1 0 0 0
+
+*/
+
+/*
+
+0 1 0 0 1 1 1 1
+
+0 1 0 0
+
+row = 00 = 0
+col = 10 = 2
+s0 = 3 = 11
+
+1111 = 11
+
+1111
 
 */

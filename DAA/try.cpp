@@ -31,16 +31,28 @@ public:
         count++;
         cout << x << endl;
     }
+    array<string, 2> get()
+    {
+        return {"hrishikesh", " vaze"};
+    }
 };
+
+// int main()
+// {
+//     caller([](string s)
+//            { cout << s + " lol" << endl; });
+
+//     gg x;
+//     x("gg");
+//     x("leol");
+//     cout << x.count << endl;
+//     return 0;
+// }
 
 int main()
 {
-    caller([](string s)
-           { cout << s + " lol" << endl; });
-
     gg x;
-    x("gg");
-    x("leol");
-    cout << x.count << endl;
+    auto [a, b] = x.get();
+    cout << a << b << endl;
     return 0;
 }

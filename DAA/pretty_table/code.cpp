@@ -31,7 +31,7 @@ public:
         rows = 0;
         cursor_x = cursor_x = -1;
 
-        col_width.empty();
+        bool unused_var = col_width.empty();
         for (int i = 0; i < cols; i++)
         {
             col_width.push_back(header[i].size() + EXTRA_SPACE);

@@ -77,6 +77,7 @@ public:
                 j++;
             }
         }
+        // copy remaining elements
         for (; i < x; i++ && k++)
         {
             sorted_array[k] = left_array[i];
