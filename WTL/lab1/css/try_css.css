@@ -20,7 +20,7 @@ section {
   -ms-grid-rows: 10vh 1fr 10vh;
       grid-template-rows: 10vh 1fr 10vh;
   place-items: center;
-      grid-template-areas: "header header header header" "ad1 sidebar main ad2" "footer footer footer footer";
+      grid-template-areas: "header header header header" "ad1 sidebar main ad2" "footer footer footer footer";
 }
 
 .section-1 .parent .child {

@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <PrettyTable>
+#include "../../PrettyTable.h"
 using namespace std;
 
 typedef std::vector<int> int_vec;

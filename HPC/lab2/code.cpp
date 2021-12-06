@@ -14,7 +14,7 @@ using namespace std;
 
 #define MAX_ROWS 500 // max rows of matrix
 #define MAX_COLS 500 // max cols of matrix
-#define TWIDTH 30    // width of table
+#define TWIDTH 25    // width of table
 
 double t_start, t_end;               // to store start and end time
 int num_cores = omp_get_num_procs(); // no of cpu cores
@@ -38,7 +38,7 @@ public:
 
     void clear()
     {
-        // initialize all matrix to a value 0
+        // initialize all matrix to a value 0 for simplicity
         // all matrix element are 0
         memset(mat1, 0, sizeof(mat1[0][0]) * MAX_ROWS * MAX_COLS);
         memset(mat2, 0, sizeof(mat2[0][0]) * MAX_ROWS * MAX_COLS);
@@ -89,26 +89,26 @@ void calculate_diff(int n)
     int data_points = n * n;
     Solution ans;
     cout << endl
-         << setw(TWIDTH) << data_points;
+         << "| " << setw(TWIDTH) << data_points << " |";
     // normal serial
     ans.multiply_matrix_serial(n);
 
-    cout << setw(TWIDTH) << get_time_difference();
+    cout << setw(TWIDTH) << get_time_difference() << " |";
 
     // parallel with default cores
     ans.multiply_matrix_parallel(n);
-    cout << setw(TWIDTH) << get_time_difference();
+    cout << setw(TWIDTH) << get_time_difference() << " |";
 
     // parallel with all cores
     omp_set_num_threads(num_cores); // use all cores
     ans.multiply_matrix_parallel(n);
-    cout << setw(TWIDTH) << get_time_difference();
+    cout << setw(TWIDTH) << get_time_difference() << " |";
 }
 
 int main()
 {
     cout << endl
-         << setw(TWIDTH) << "data points" << setw(TWIDTH) << "serial" << setw(TWIDTH) << "parallel (default cores)" << setw(TWIDTH) << "parallel (all cores)";
+         << setw(TWIDTH) << "data points" << setw(TWIDTH) << "serial" << setw(TWIDTH) << "parallel" << setw(TWIDTH) << "all cores";
     for (int i = 10; i < 1000; i = i + 10)
     {
         calculate_diff(i);
