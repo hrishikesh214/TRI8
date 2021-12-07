@@ -6,7 +6,7 @@
 
 #include <iostream>
 #include <vector>
-
+#define INFINITE 99999
 using namespace std;
 
 // print vector as well as array
@@ -51,41 +51,37 @@ public:
     void merge(int p, int q, int r)
     {
         int i, j, k;
-        int x = q - p + 1;
-        int y = r - q;
-        int left_array[x], right_array[y];
-        for (i = 0; i < x; i++)
+        int x = q - p + 1; // n1
+        int y = r - q;     // n2
+        int left_array[x + 2], right_array[y + 2];
+
+        // store left and right array in temporary arrays
+        for (i = 1; i <= x; i++)
         {
-            left_array[i] = sorted_array[p + i];
+            left_array[i] = sorted_array[p + i - 1];
         }
-        for (j = 0; j < y; j++)
+        for (j = 1; j <= y; j++)
         {
-            right_array[j] = sorted_array[q + j + 1];
+            right_array[j] = sorted_array[q + j];
         }
-        i = 0, j = 0;
+        left_array[x + 1] = INFINITE;
+        right_array[y + 1] = INFINITE;
+        i = 1, j = 1;
 
         for (k = p; k <= r; k++)
         {
-            if (i < x && left_array[i] <= right_array[j])
+            if (left_array[i] <= right_array[j])
             {
                 sorted_array[k] = left_array[i];
                 i++;
             }
-            else if (j < y)
+            else
             {
                 sorted_array[k] = right_array[j];
                 j++;
             }
         }
-        // copy remaining elements
-        for (; i < x; i++ && k++)
-        {
-            sorted_array[k] = left_array[i];
-        }
-        for (; j < y; j++ && k++)
-        {
-            sorted_array[k] = right_array[j];
-        }
+        print_vector(sorted_array, sorted_array.size());
     }
 };
 
@@ -125,7 +121,7 @@ int main()
                  << "unsorted array: ";
             print_vector(nums, num_elements);
             s->set_array(nums)->sort();
-            cout << "sorted array: ";
+            cout << "sorted array: " << endl;
             print_vector(s->sorted_array, num_elements);
             break;
         default:

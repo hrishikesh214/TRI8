@@ -397,11 +397,11 @@ int main()
     int temp_int = 0;
     int_vec temp;
     SimplifiedDES encryptor;
-    // encryptor.set_key({1, 0, 1, 0, 0, 0, 0, 0, 1, 0});
-    // encryptor.set_plaintext({1, 0, 0, 1, 0, 1, 1, 1});
-    // encryptor.execute();
-    // encryptor.display();
-    // return 0;
+    encryptor.set_key({1, 0, 1, 0, 0, 0, 0, 0, 1, 0});
+    encryptor.set_plaintext({1, 0, 0, 1, 0, 1, 1, 1});
+    encryptor.execute();
+    encryptor.display();
+    return 0;
 
     do
     {

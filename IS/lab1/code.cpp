@@ -38,12 +38,12 @@ public:
         for (int i = 0; i < len; i++)
         {
             // lowercase
-            if (cipher_text[i] >= 'a' || cipher_text[i] <= 'z')
+            if (cipher_text[i] >= 'a' && cipher_text[i] <= 'z')
             {
                 cipher_text[i] = ((cipher_text[i] - 'a' + key) % 26) + 'a';
             }
             // uppercase
-            else if (cipher_text[i] >= 'A' || cipher_text[i] <= 'Z')
+            else if (cipher_text[i] >= 'A' && cipher_text[i] <= 'Z')
             {
                 cipher_text[i] = ((cipher_text[i] - 'A' + key) % 26) + 'A';
             }
@@ -64,14 +64,14 @@ public:
         for (int i = 0; i < len; i++)
         {
             // lowercase
-            if (plain_text[i] >= 'a' || plain_text[i] <= 'z')
+            if (plain_text[i] >= 'a' && plain_text[i] <= 'z')
             {
-                plain_text[i] = ((plain_text[i] - 'a' - key) % 26) + 'a';
+                plain_text[i] = ((plain_text[i] - 65 - key) % 26) + 65;
             }
             // uppercase
-            else if (plain_text[i] >= 'A' || plain_text[i] <= 'Z')
+            else if (plain_text[i] >= 'A' && plain_text[i] <= 'Z')
             {
-                plain_text[i] = ((plain_text[i] - 'A' - key) % 26) + 'A';
+                plain_text[i] = ((plain_text[i] - 97 - key) % 26) + 97;
             }
         }
         return plain_text;
