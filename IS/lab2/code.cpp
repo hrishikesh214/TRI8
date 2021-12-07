@@ -7,12 +7,13 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <PrettyTable>
+#include <iomanip>
 using namespace std;
 
 typedef std::vector<int> int_vec;
+#define TWIDTH 25 // table width
 
-PrettyTable table({"Operation", "Output"});
+// PrettyTable table({"Operation", "Output"});
 
 int P10[10] = {3, 5, 2, 7, 4, 10, 1, 9, 8, 6}; // p10 permutation
 int P8[8] = {6, 3, 7, 4, 8, 5, 10, 9};         // p8 permutation
@@ -51,6 +52,23 @@ void print_vector(int_vec &v)
     cout << endl;
 }
 
+void print_table_header()
+{
+    cout << "| " << setw(TWIDTH) << left << "Operation"
+         << " | " << setw(TWIDTH) << "Output"
+         << " |" << endl;
+    cout << "| " << setw(TWIDTH) << left << " "
+         << " | " << setw(TWIDTH) << " "
+         << " |" << endl;
+}
+
+void print_table_row(vector<string> row)
+{
+    cout << "| " << setw(TWIDTH) << row[0] << " | "
+         << setw(TWIDTH) << row[1] << " |"
+         << endl;
+}
+
 class Bits
 {
 public:
@@ -80,7 +98,6 @@ public:
             bits[i] = bits[i + 1];
         }
         bits[size - 1] = temp;
-        table.add_row({"RightHalfShift", vector_to_string(bits)});
         return this;
     }
     Bits *LLshift()
@@ -92,7 +109,14 @@ public:
             bits[i] = bits[i + 1];
         }
         bits[end] = temp;
-        table.add_row({"LeftHalfShift", vector_to_string(bits)});
+        return this;
+    }
+    Bits *Lshift()
+    {
+        this
+            ->RLshift()
+            ->LLshift();
+        print_table_row({"LeftShift", vector_to_string(bits)});
         return this;
     }
     Bits *P10()
@@ -108,7 +132,7 @@ public:
             temp[i] = bits[::P10[i] - 1];
         }
         bits = temp;
-        table.add_row({"P10", vector_to_string(bits)});
+        print_table_row({"P10", vector_to_string(bits)});
         return this;
     }
     Bits *P8()
@@ -120,7 +144,7 @@ public:
         }
         bits = temp;
         size = 8;
-        table.add_row({"P8", vector_to_string(bits)});
+        print_table_row({"P8", vector_to_string(bits)});
         return this;
     }
     Bits *P4()
@@ -139,7 +163,7 @@ public:
                 temp[i] = bits[::P4[i - 4] - 1 + 4];
         }
         bits = temp;
-        table.add_row({"P4", vector_to_string(bits)});
+        print_table_row({"P4", vector_to_string(bits)});
         return this;
     }
     Bits *R_xor_with(Bits *b)
@@ -158,7 +182,7 @@ public:
                 temp[i] = bits[i] == b->bits[i - 4] ? 0 : 1;
         }
         bits = temp;
-        table.add_row({"R_xor_with", vector_to_string(bits)});
+        print_table_row({"R_xor_with", vector_to_string(bits)});
         return this;
     }
     Bits *R_xor_with_L()
@@ -183,7 +207,7 @@ public:
             temp[i + 4] = original_bits[i + 4];
         }
         bits = temp;
-        table.add_row({"R_xor_with_L", vector_to_string(bits)});
+        print_table_row({"R_xor_with_L", vector_to_string(bits)});
         return this;
     }
     Bits *IP()
@@ -199,7 +223,7 @@ public:
             temp[i] = bits[::IP[i] - 1];
         }
         original_bits = bits = temp;
-        table.add_row({"IP", vector_to_string(bits)});
+        print_table_row({"IP", vector_to_string(bits)});
         return this;
     }
     Bits *INVERSE_IP()
@@ -215,7 +239,7 @@ public:
             temp[i] = bits[::INVERSE_IP[i] - 1];
         }
         bits = temp;
-        table.add_row({"INVERSE_IP", vector_to_string(bits)});
+        print_table_row({"INVERSE_IP", vector_to_string(bits)});
         return this;
     }
     Bits *EP()
@@ -230,7 +254,7 @@ public:
         }
         size = 12;
         bits = temp;
-        table.add_row({"EP", vector_to_string(bits)});
+        print_table_row({"EP", vector_to_string(bits)});
         return this;
     }
     Bits *shrink()
@@ -262,7 +286,7 @@ public:
 
         size = 8;
         bits = temp;
-        table.add_row({"shrink", vector_to_string(bits)});
+        print_table_row({"shrink", vector_to_string(bits)});
         return this;
     }
     Bits *swap()
@@ -274,8 +298,17 @@ public:
             bits[4 + i] = temp[i];
         }
         original_bits = bits;
-        table.add_row({"SWAP", vector_to_string(bits)});
+        print_table_row({"SWAP", vector_to_string(bits)});
         return this;
+    }
+    Bits *complex(Bits *key)
+    {
+        return this
+            ->EP()
+            ->R_xor_with(key)
+            ->shrink()
+            ->P4()
+            ->R_xor_with_L();
     }
     void print()
     {
@@ -312,36 +345,37 @@ public:
     }
     void execute()
     {
+        cout << endl
+             << "KEY 1:" << endl;
+        print_table_header();
         Bits *temp_plaintext = new Bits(8);
         temp_plaintext->set_bit(plaintext->bits);
         // generate key1 and key2
         key1->P10()
-            ->RLshift()
-            ->LLshift();
+            ->Lshift();
         key2->set_bit(key1->bits); // copy key1 to key2
         key1->P8();
-        key2->RLshift()->LLshift()->RLshift()->LLshift()->P8();
+        cout << endl
+             << "KEY 2:" << endl;
+        print_table_header();
+        key2
+            ->Lshift()
+            ->Lshift()
+            ->P8();
 
         // now start encryption
+        cout << endl
+             << "PLain Text:" << endl;
+        print_table_header();
         ciphertext = temp_plaintext
                          ->IP()
-                         ->EP()
-                         ->R_xor_with(key1)
-                         ->shrink()
-                         ->P4()
-                         ->R_xor_with_L()
+                         ->complex(key1)
                          ->swap()
-                         ->EP()
-                         ->R_xor_with(key2)
-                         ->shrink()
-                         ->P4()
-                         ->R_xor_with_L()
+                         ->complex(key2)
                          ->INVERSE_IP();
     }
-
     void display()
     {
-        table.print();
         cout << endl
              << "Plaintext: ";
         plaintext->print();
@@ -353,6 +387,7 @@ public:
         key2->print();
         cout << "Ciphertext: ";
         ciphertext->print();
+        cout << endl;
     }
 };
 
@@ -366,7 +401,6 @@ int main()
     // encryptor.set_plaintext({1, 0, 0, 1, 0, 1, 1, 1});
     // encryptor.execute();
     // encryptor.display();
-
     // return 0;
 
     do
