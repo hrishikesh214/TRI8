@@ -87,5 +87,6 @@
 		"semaphore": "cpp",
 		"syncstream": "cpp",
 		"prettytable": "cpp"
-	}
+	},
+	"C_Cpp.errorSquiggles": "Disabled"
 }
