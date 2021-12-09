@@ -109,7 +109,7 @@ int main()
 {
     cout << endl
          << setw(TWIDTH) << "data points" << setw(TWIDTH) << "serial" << setw(TWIDTH) << "parallel" << setw(TWIDTH) << "all cores";
-    for (int i = 10; i < 1000; i = i + 10)
+    for (int i = 50; i <= 500; i = i + 50)
     {
         calculate_diff(i);
     }
