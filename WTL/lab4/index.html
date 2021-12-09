@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WTL Lab 4 DOM Manupulation</title>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
+	<body>
+		<h1 class="page_title">DOM Manupulation</h1>
+		<section>
+			<h2>Hover the box</h2>
+			<div class="demo row">
+				<div
+					onmouseleave="stop_heating()"
+					onmouseover="start_heating()"
+					class="heat"
+				></div>
+				<div class="heat-content"></div>
+			</div>
+		</section>
+		<section>
+			<h2 class="title">Adding / Removing content</h2>
+			<div class="demo">
+				<button onclick="toggle_info()">toggle info</button>
+				<p id="info" class=""></p>
+			</div>
+		</section>
+		<section>
+			<h2>Live Clock</h2>
+			<div class="demo">
+				<span id="clock">starting...</span>
+			</div>
+		</section>
+		<section class="dice-roll">
+			<h2>Roll Dice</h2>
+			<div class="demo">
+				<button onclick="roll_dice()">Roll</button>
+				<span id="dice_val"></span>
+			</div>
+		</section>
+		<section class="bgchange">
+			<h2>Background color</h2>
+			<div class="demo">
+				<label for="bg-change">Choose bg color: </label>
+				<input
+					type="color"
+					id="bg-change"
+					value="#ffffff"
+					oninput="change_color()"
+				/>
+				<br />
+				<br />
+				<label for="text-change">Choose text color: </label>
+				<input
+					type="color"
+					id="text-change"
+					value="#000000"
+					oninput="change_color(1)"
+				/>
+			</div>
+		</section>
+		<script src="./script.js"></script>
+	</body>
+</html>

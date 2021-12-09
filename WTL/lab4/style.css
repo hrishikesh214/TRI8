@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+
+:root {
+	--fira: "Fira Sans", sans-serif;
+	--title: "Righteous", cursive;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: var(--fira);
+	box-sizing: border-box;
+}
+
+body {
+	padding: 1rem;
+	padding-top: 3rem;
+	font-size: 1.1rem;
+	background-color: rgb(212, 212, 212);
+}
+
+.page_title {
+	text-align: center;
+}
+
+section {
+	background-color: white;
+	margin: 3rem auto;
+	width: clamp(320px, 50%, 1000px);
+	min-height: 250px;
+	padding: 3.5rem;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+}
+.demo {
+	padding: 1rem 0;
+}
+h1 {
+	font-size: 3rem;
+	font-weight: 700;
+	letter-spacing: -1px;
+	font-family: var(--title);
+}
+h2 {
+	font-size: 2.5rem;
+	margin: 0.5rem 0;
+	font-weight: 300;
+	letter-spacing: -2px;
+	font-family: var(--title);
+}
+p,
+span {
+	color: rgb(78, 78, 78) !important;
+	margin: 0.5rem 0;
+	line-height: 1.8rem;
+	font-size: 1.2rem;
+}
+#clock {
+	font-size: 1.8rem;
+}
+
+button {
+	cursor: pointer;
+	padding: 0.5em 0.7em;
+	margin: 0.8rem 0;
+	border: none;
+	font-weight: 700;
+	font-size: 1.1rem;
+	border-radius: 5px;
+	background-color: aquamarine;
+}
+input[type*="color"] {
+	border: 1px solid black;
+	background-color: transparent;
+}
+
+.dice-roll .demo {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+.dice-roll .demo button {
+	font-size: 1.5rem;
+}
+#dice_val {
+	grid-area: val;
+	font-size: 5rem;
+}
+.row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.heat {
+	--dimension: 50px;
+	cursor: pointer;
+	height: var(--dimension);
+	width: var(--dimension);
+	background-color: aquamarine;
+	transition: background-color 300ms linear;
+}
+.heat-content {
+	font-size: 1.5rem;
+}
