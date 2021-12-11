@@ -343,7 +343,7 @@ public:
     {
         plaintext->set_bit(_plaintext);
     }
-    void execute()
+    void encrypt()
     {
         cout << endl
              << "KEY 1:" << endl;
@@ -374,10 +374,41 @@ public:
                          ->complex(key2)
                          ->INVERSE_IP();
     }
-    void display()
+    void decrypt()
     {
         cout << endl
-             << "Plaintext: ";
+             << "KEY 1:" << endl;
+        print_table_header();
+        Bits *temp_plaintext = new Bits(8);
+        temp_plaintext->set_bit(plaintext->bits);
+        // generate key1 and key2
+        key1->P10()
+            ->Lshift();
+        key2->set_bit(key1->bits); // copy key1 to key2
+        key1->P8();
+        cout << endl
+             << "KEY 2:" << endl;
+        print_table_header();
+        key2
+            ->Lshift()
+            ->Lshift()
+            ->P8();
+
+        // now start decryption
+        cout << endl
+             << "PLain Text:" << endl;
+        print_table_header();
+        ciphertext = temp_plaintext
+                         ->IP()
+                         ->complex(key2)
+                         ->swap()
+                         ->complex(key1)
+                         ->INVERSE_IP();
+    }
+    void display(int is_decrypt = 0)
+    {
+        cout << endl
+             << (is_decrypt ? "Ciphertext: " : "Plaintext: ");
         plaintext->print();
         cout << "Key: ";
         key->print();
@@ -385,7 +416,7 @@ public:
         key1->print();
         cout << "Sub Key2: ";
         key2->print();
-        cout << "Ciphertext: ";
+        cout << (is_decrypt ? "Plaintext: " : "Ciphertext: ");
         ciphertext->print();
         cout << endl;
     }
@@ -396,19 +427,24 @@ int main()
     int choice = 0;
     int temp_int = 0;
     int_vec temp;
-    SimplifiedDES encryptor;
-    encryptor.set_key({1, 0, 1, 0, 0, 0, 0, 0, 1, 0});
-    encryptor.set_plaintext({1, 0, 0, 1, 0, 1, 1, 1});
-    encryptor.execute();
-    encryptor.display();
-    return 0;
+    SimplifiedDES encryptor, decryptor;
+    // encryptor.set_key({1, 0, 1, 0, 0, 0, 0, 0, 1, 0});
+    // encryptor.set_plaintext({1, 0, 0, 1, 0, 1, 1, 1});
+    // encryptor.encrypt();
+    // encryptor.display();
+    // decryptor.set_key({1, 0, 1, 0, 0, 0, 0, 0, 1, 0});
+    // decryptor.set_plaintext({0, 0, 1, 1, 1, 0, 0, 0});
+    // decryptor.decrypt();
+    // decryptor.display();
+    // return 0;
 
     do
     {
         cout << endl
              << "0. Exit" << endl
              << "1. Set Key" << endl
-             << "2. S-DES" << endl
+             << "2. S-DES Encrypt" << endl
+             << "3. S-DES Decrypt" << endl
              << "Enter choice: ";
         cin >> choice;
         cout << endl;
@@ -425,6 +461,7 @@ int main()
                 temp.push_back(temp_int);
             }
             encryptor.set_key(temp);
+            decryptor.set_key(temp);
             break;
         case 2:
             cout << "Enter plaintext: ";
@@ -435,8 +472,20 @@ int main()
                 temp.push_back(temp_int);
             }
             encryptor.set_plaintext(temp);
-            encryptor.execute();
+            encryptor.encrypt();
             encryptor.display();
+            break;
+        case 3:
+            cout << "Enter ciphertext: ";
+            temp.clear();
+            for (int i = 0; i < 8; i++)
+            {
+                cin >> temp_int;
+                temp.push_back(temp_int);
+            }
+            decryptor.set_plaintext(temp);
+            decryptor.decrypt();
+            decryptor.display(1);
             break;
         default:
             cout << endl

@@ -66,12 +66,12 @@ public:
             // lowercase
             if (plain_text[i] >= 'a' && plain_text[i] <= 'z')
             {
-                plain_text[i] = ((plain_text[i] - 65 - key) % 26) + 65;
+                plain_text[i] = ((plain_text[i] - 'a' - key) % 26) + 'a';
             }
             // uppercase
             else if (plain_text[i] >= 'A' && plain_text[i] <= 'Z')
             {
-                plain_text[i] = ((plain_text[i] - 97 - key) % 26) + 97;
+                plain_text[i] = ((plain_text[i] - 'A' - key) % 26) + 'A';
             }
         }
         return plain_text;
