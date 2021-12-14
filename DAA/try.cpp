@@ -39,8 +39,8 @@ public:
 
 // int main()
 // {
-//     caller([](string s)
-//            { cout << s + " lol" << endl; });
+//     // caller([](string s)
+//     //        { cout << s + " lol" << endl; });
 
 //     gg x;
 //     x("gg");

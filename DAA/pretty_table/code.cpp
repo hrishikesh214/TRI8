@@ -168,7 +168,7 @@ public:
 
 int main()
 {
-    PrettyTable *table = new PrettyTable({"Name Person", "Age", "Height"});
+    PrettyTable *table = new PrettyTable({"Name", "Age", "Height"});
     table
         ->add_row({"Hrishi", "20", "5'10"})
         ->add_row({"gg", std::to_string(10), "710"})
