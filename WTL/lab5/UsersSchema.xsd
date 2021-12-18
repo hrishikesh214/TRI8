@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+<xsd:element name="users">
+    <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" ref="user"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="user">
+    <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:integer" />
+            <xsd:element name="name" type="xsd:string" />
+            <xsd:element name="dob" type="xsd:date" />
+            <xsd:element name="age" type="xsd:integer" />
+            <xsd:element name="email" type="xsd:string" />
+            <xsd:element name="phone" type="xsd:integer" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:element>
+</xsd:schema>

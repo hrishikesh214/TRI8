@@ -1,0 +1,8 @@
+<!ELEMENT users (user*)>
+<!ELEMENT user (id, name, dob, age, email, phone)>
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT dob (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT phone (#PCDATA)>

@@ -1,7 +1,7 @@
 /**
  * @file code.cpp
  * @author PE06 Hrishikesh Vaze
- * @brief IS - LAB 3 - asymetric RSA
+ * @brief IS - LAB 3 - asymmetric RSA
  */
 
 #include <iostream>
@@ -25,12 +25,16 @@ bool is_prime(int n)
     return true;
 }
 
-int inverse_mod(int a, int m)
+int inv(int e, int phi)
 {
-    for (int x = 1; x < m; x++)
-        if (((a % m) * (x % m)) % m == 1)
-            return x;
-    return -1; // error
+    float d = 0;
+    int k = 1;
+    do
+    {
+        d = (float)(phi * k + 1) / e;
+        k++;
+    } while (((int)(d * 10) % 10) != 0);
+    return d;
 }
 
 int gcd(int a, int b)
@@ -58,8 +62,8 @@ public:
                 break;
             e++;
         }
-        cout << "e = " << e << endl;
-        int d = inverse_mod(e, phi);
+        cout << "Public key (e): " << e << endl;
+        int d = inv(e, phi);
         ciphertext = ((int)pow(plaintext, e)) % n;
 
         return {to_string(ciphertext), to_string(n), to_string(d)};
@@ -67,9 +71,8 @@ public:
 
     static std::vector<string> decrypt(int n, int d, int ciphertext)
     {
+
         int plaintext = ciphertext;
-        cout << "d = " << d << endl;
-        cout << "n = " << n << endl;
         plaintext = ((int)pow(ciphertext, d)) % n;
         return {to_string(((int)pow(ciphertext, d)) % n)};
     }
@@ -106,12 +109,12 @@ int main()
             cout << "CipherText: " << result[0] << endl;
             if (result[1] != "")
                 cout << "N: " << result[1] << endl
-                     << "Public Key: " << result[2] << endl;
+                     << "Private Key (d): " << result[2] << endl;
             break;
         case 2:
             cout << "Enter N: ";
             cin >> n;
-            cout << "Enter D: ";
+            cout << "Enter Private Key(d) : ";
             cin >> d;
             cout << "Enter CipherText: ";
             cin >> data;

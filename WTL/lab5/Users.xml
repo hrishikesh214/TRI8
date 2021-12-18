@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- <!DOCTYPE users SYSTEM "UsersDTD.dtd"> -->
+<!-- <?xml-stylesheet type="text/xsl" href="UsersXSL.xsl" ?> -->
+<!-- <?xml-stylesheet type="text/xsl" href="UsersXSL.xsl"?> -->
+<users 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="UsersSchema.xsd">
+<!-- <users> -->
+    <user>
+        <id>1</id>
+        <name>Hrishikesh Vaze</name>
+        <dob>15-03-2002</dob>
+        <age>20</age>
+        <email>1032190087@mitwpu.edu.in</email>
+        <phone>+91-958-958-958</phone>
+    </user>
+    <user>
+        <id>2</id>
+        <name>Yash</name>
+        <dob>17-05-2001</dob>
+        <age>21</age>
+        <email>103219xxxx@mitwpu.edu.in</email>
+        <phone>+91-123-1231-33</phone>
+    </user>
+    <user>
+        <id>3</id>
+        <name>Om Patel</name>
+        <dob>25-12-2001</dob>
+        <age>20</age>
+        <email>1032190xxx@mitwpu.edu.in</email>
+        <phone>+91-958-128-958</phone>
+    </user>
+</users>
