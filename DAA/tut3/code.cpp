@@ -66,7 +66,7 @@ public:
 
     void execute(int capacity)
     {
-        std::vector<float> ratios, ratio_array;
+        std::vector<float> ratios, ratio_array; // for displaying purpose
 
         std::cout << "initial array: ";
         print_items(items);
@@ -80,7 +80,7 @@ public:
         print(ratio_array);
 
         // sort according to ratio of profit/weight
-        std::sort(items.begin(), items.end(), [](const auto &a, const auto &b) -> float
+        std::sort(items.begin(), items.end(), [&](const auto &a, const auto &b) -> float
                   { return (float)a.first / a.second > (float)b.first / b.second; });
 
         std::cout << "sorted array: ";
@@ -94,6 +94,7 @@ public:
         // iterating through all items
         for (auto item : items)
         {
+            // can add item as whole
             if (current_capacity + item.second <= capacity)
             {
                 current_capacity += item.second;
@@ -101,13 +102,14 @@ public:
                 selected++;
                 ratios.push_back(1);
             }
+            // for adding fractional item
             else
             {
                 int remaining_capacity = capacity - current_capacity;
                 if (remaining_capacity == 0)
                 {
                     ratios.push_back(0);
-                    continue;
+                    continue; // once added continue for displaying 0 in ratio (X array)
                 }
                 float __ratio = (float)remaining_capacity / item.second;
                 float __profit = (float)(item.first * __ratio);
