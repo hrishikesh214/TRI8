@@ -7,8 +7,9 @@ from Crypto.PublicKey import DSA
 from Crypto.Hash import SHA256
 from Crypto.Signature import DSS
 
-KEY_SIZE = 2048
-message = 'hey! this is a message'.encode()
+KEY_SIZE = 1024+64
+message = input('Enter message: ')
+message = message.encode()
 
 # generate a key-pair
 key = DSA.generate(KEY_SIZE)

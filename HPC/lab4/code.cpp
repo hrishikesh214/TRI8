@@ -15,11 +15,11 @@
 typedef std::vector<int> int_vec;
 using namespace std;
 
-#define MAX_SIZE 300000 // Maximum size of the array
-#define _JUMP_ADD 500   // Jump size for addion execution
-#define _JUMP_MUL 10000 // Jump size for multiplication execution
-#define NUM_THREADS 4   // maximun threads for parallel
-#define TWIDTH 25       // width of table
+#define MAX_SIZE 20000 // Maximum size of the array
+#define _JUMP_ADD 500  // Jump size for addion execution
+#define _JUMP_MUL 2000 // Jump size for multiplication execution
+#define NUM_THREADS 4  // maximun threads for parallel
+#define TWIDTH 25      // width of table
 
 double t_start = 0, t_end = 0;
 
@@ -133,7 +133,7 @@ int main()
     cout << endl
          << setw(TWIDTH) << "size" << setw(TWIDTH) << "serial" << setw(TWIDTH) << "parallel" << endl
          << endl;
-    for (int i = _JUMP_ADD; i <= 10000; i += _JUMP_ADD)
+    for (int i = _JUMP_ADD; i <= 5000; i += _JUMP_ADD)
     {
         execute_add(x, y, z, i);
     }
@@ -143,7 +143,7 @@ int main()
     cout << endl
          << setw(TWIDTH) << "size" << setw(TWIDTH) << "serial" << setw(TWIDTH) << "parallel" << endl
          << endl;
-    for (int i = _JUMP_MUL; i <= MAX_SIZE; i += _JUMP_MUL)
+    for (int i = _JUMP_MUL; i <= 20000; i += _JUMP_MUL)
     {
         execute_mul(x, y, z, i);
     }

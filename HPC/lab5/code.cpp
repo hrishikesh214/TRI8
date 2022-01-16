@@ -17,16 +17,17 @@
 typedef std::vector<int> int_vec;
 using namespace std;
 
-#define MAX_SIZE 1000 // Maximum size of the array
-#define _JUMP 100     // Jump size
-#define _START 100
-#define TWIDTH 25 // width of table
-#define NUM_THREADS 4
+#define MAX_SIZE 15000 // Maximum size of the array
+#define _JUMP 500      // Jump size
+#define _START 500     // Start size
+#define TWIDTH 25      // width of table
+#define NUM_THREADS 8
 
 #define debug(var) cout << #var << " = " << var << endl;
 
 double t_start = 0, t_end = 0;
-long arr[MAX_SIZE];
+int *arr = (int *)malloc(MAX_SIZE * sizeof(int));
+int *arr_d = (int *)malloc(MAX_SIZE * sizeof(int));
 
 /**
  * @brief Get the time difference
@@ -57,14 +58,14 @@ void print(std::vector<T> vec)
 class QuickSort
 {
 public:
-    static void execute_serial(long vec[], int p, int r)
+    static void execute_serial(int vec[], int p, int r)
     {
         t_start = omp_get_wtime();
         serial_sort(vec, p, r);
         t_end = omp_get_wtime();
     }
 
-    static void serial_sort(long vec[], int p, int r)
+    static void serial_sort(int vec[], int p, int r)
     {
         if (p < r)
         {
@@ -74,7 +75,7 @@ public:
         }
     }
 
-    static int serial_partition(long vec[], int p, int r)
+    static int serial_partition(int vec[], int p, int r)
     {
         int pivot = vec[r];
         int i = p - 1;
@@ -91,19 +92,19 @@ public:
         return i + 1;
     }
 
-    static void execute_parallel(long vec[], int p, int r)
+    static void execute_parallel(int vec[], int p, int r)
     {
         t_start = omp_get_wtime();
         parallel_sort(vec, p, r);
         t_end = omp_get_wtime();
     }
 
-    static void parallel_sort(long vec[], int p, int r)
+    static void parallel_sort(int vec[], int p, int r)
     {
         if (p < r)
         {
             int q = parallel_partition(vec, p, r);
-#pragma omp parallel sections
+#pragma omp parallel sections private(p, q, r)
             {
 #pragma omp section
                 {
@@ -117,7 +118,7 @@ public:
         }
     }
 
-    static int parallel_partition(long vec[], int p, int r)
+    static int parallel_partition(int vec[], int p, int r)
     {
         int pivot = vec[r];
         int i = p - 1;
@@ -136,30 +137,31 @@ public:
 };
 
 // function to generate random elements in int array
-void generate_array(long arr[], int size)
+void generate_array(int arr[], int size)
 {
     for (int i = 0; i < size; i++)
     {
         arr[i] = rand() % size;
+        arr_d[i] = arr[i];
     }
 }
 
 void execute(int n)
 {
     cout << setw(TWIDTH) << n << " |";
-
     generate_array(arr, n);
+
     QuickSort::execute_serial(arr, 0, n - 1);
     cout << setw(TWIDTH) << get_time_difference() << " |";
 
-    generate_array(arr, n);
-    QuickSort::execute_parallel(arr, 0, n - 1);
+    QuickSort::execute_parallel(arr_d, 0, n - 1);
     cout << setw(TWIDTH) << get_time_difference() << " |" << endl;
 }
 
 int main()
 {
     omp_set_num_threads(NUM_THREADS);
+    // omp_set_nested(1);
     cout << endl
          << setw(TWIDTH) << "elements" << setw(TWIDTH) << "serial" << setw(TWIDTH) << "parallel" << endl;
     for (int i = _START; i <= MAX_SIZE; i = i + _JUMP)

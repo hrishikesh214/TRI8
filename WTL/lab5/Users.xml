@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- <!DOCTYPE users SYSTEM "UsersDTD.dtd"> -->
-<!-- <?xml-stylesheet type="text/xsl" href="UsersXSL.xsl" ?> -->
+<?xml-stylesheet type="text/xsl" href="UsersXSL.xslt" ?>
 <!-- <?xml-stylesheet type="text/xsl" href="UsersXSL.xsl"?> -->
-<users 
+<!-- <users 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="UsersSchema.xsd">
-<!-- <users> -->
+    xsi:noNamespaceSchemaLocation="UsersSchema.xsd"> -->
+<users>
     <user>
         <id>1</id>
         <name>Hrishikesh Vaze</name>

@@ -117,7 +117,7 @@ int main()
 
     cout << endl
          << setw(TWIDTH) << "data points" << setw(TWIDTH) << "serial" << setw(TWIDTH) << "parallel" << endl;
-    for (int i = 5000; i <= 40000; i = i + 5000)
+    for (int i = 500; i <= 2000; i = i + 100)
     {
         execute(i);
     }

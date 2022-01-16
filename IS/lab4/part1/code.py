@@ -7,7 +7,7 @@ code.py (md5)
 
 import hashlib
 
-str2hash = "hello, this is secret message"
+str2hash = input('Enter msg to hash: ')
 
 result = hashlib.md5(str2hash.encode())
 

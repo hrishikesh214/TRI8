@@ -5,6 +5,7 @@ IS B2 Part 2 Client Server Authentication Challenge Response Architecture
 Client.py
 '''
 
+
 import asyncio
 import socketio
 
@@ -15,7 +16,7 @@ async def challenge(m):
     print('[client] challenge recieved, n = ', m['arg'])
     # send response
     await asyncio.sleep(1)
-    await io.emit('challenge_response', {'response': m['arg']*m['arg']})
+    await io.emit('challenge_response', {'response': m['arg']*m['arg'] + 1})
     print('[client] challenge response sent')
 
 @io.event
