@@ -7,7 +7,7 @@ from Crypto.PublicKey import DSA
 from Crypto.Hash import SHA256
 from Crypto.Signature import DSS
 
-KEY_SIZE = 1024+64
+KEY_SIZE = 1024
 message = input('Enter message: ')
 message = message.encode()
 
@@ -28,6 +28,6 @@ print(f'Signature: {int.from_bytes(signature, "big")}', '\n\n')
 verifier = DSS.new(public_key, 'fips-186-3')
 try:
     verifier.verify(message, signature)
-    print('Signature verified')
+    print('Signature verified\n')
 except ValueError:
     print('Verification failed: \n')
