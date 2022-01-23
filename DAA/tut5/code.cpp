@@ -29,9 +29,10 @@ void print(std::vector<T> vec)
 class NQueen
 {
 public:
-    std::vector<std::vector<int>> board; // board for placing the queens
-    int n;                               // size of board
-    int count = 1;                       // count of solutions
+    std::vector<std::vector<int>> board;            // board for placing the queens
+    int n;                                          // size of board
+    int count = 1;                                  // count of solutions
+    std::vector<std::vector<std::vector<int>>> ans; // final answer
 
     /**
      * @brief sets the board size
@@ -50,13 +51,24 @@ public:
         }
     }
 
-    void print_board()
+    void print_board(std::vector<std::vector<int>> _board = {})
     {
-        std::cout << std::endl
-                  << "Board #" << count << ": " << std::endl;
+        if (_board.empty())
+            _board = board;
         for (int i = 0; i < n; i++)
         {
-            print(board[i]);
+            print(_board[i]);
+        }
+    }
+
+    void print_ans()
+    {
+        for (int i = 0; i < ans.size(); i++)
+        {
+            std::cout << "Pattern #" << i + 1 << ": " << std::endl;
+
+            print_board(ans[i]);
+            std::cout << std::endl;
         }
     }
 
@@ -102,37 +114,28 @@ public:
      * @brief nqueen algo
      *
      */
-    bool solve(int row)
+    void solve(int row)
     {
         if (row == n)
-            return true;
+            // return true;
+            return ans.push_back(board);
         for (int col = 0; col < n; col++)
         {
             if (isOk(row, col))
             {
                 board[row][col] = 1;
                 // print_board();
-                if (solve(row + 1))
-                    return true;
+                solve(row + 1);
                 board[row][col] = 0;
             }
         }
-        return false;
     }
 
     void execute(int _n)
     {
-        for (int i = 0; i < n; i++)
-        {
-            setup(_n);
-            board[0][i] = 1;
-            if (solve(1))
-            {
-                print_board();
-                count++;
-            }
-            board[0][i] = 0;
-        }
+        setup(_n);
+        solve(0);
+        print_ans();
     }
 };
 
