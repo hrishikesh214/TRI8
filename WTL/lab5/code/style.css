@@ -1,0 +1,97 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+
+:root {
+	--fira: "Fira Sans", sans-serif;
+	--title: "Righteous", cursive;
+}
+*, 
+*::after, 
+*::before{
+	margin: 0;
+	padding: 0;
+	font-family: var(--fira);
+	box-sizing: border-box;
+}
+
+body{
+	background-color: #ccc;
+	display: flex;
+	align-items: center;
+/*	gap:  3rem;*/
+	min-height: 100vh;
+	min-width: 100vw;
+	justify-content: center;
+	color:  #333;
+	/*padding:  5rem 0;*/
+}
+
+h1{
+	font-size: 3rem;
+	color:  #111;
+	margin:  0 0 2rem 0;
+}
+
+h2{
+	font-size: 2rem;
+	color:  #111;
+	margin:  0 0 2rem 0;
+}
+
+section{
+	/*width: clamp(360px, 50%, 720px);*/
+	width:  clamp(360px, 30%, 50vw);
+	background-color: #fff;
+	padding:  2rem;
+	border-radius: 5px;
+	height:  100vh;
+
+}
+
+
+input, textarea{
+	border: none;
+	padding:  0.5rem;
+	font-size: 1rem;
+	border:  1px solid #333;
+	margin:  0.7rem 0;
+}
+
+
+.tasks{
+	display: flex;
+	flex-direction: column;
+	gap:  1rem;
+	overflow-y: auto;
+	height:  90vh;
+	padding-bottom: 1rem;
+}
+
+.tasks .task{
+	border: 2px solid #444;
+	padding:  1rem;
+	display: flex;
+	flex-direction: column;
+	gap:  0.3rem;
+
+}
+
+.task .action{
+	color:  #111;
+	font-size: 1.1rem;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+.task .description {
+	color:  #444;
+}
+.task .time{
+	color:  #222;
+	text-align: right;
+}
+
+.form-container .error .msg{
+	color:  red;
+}

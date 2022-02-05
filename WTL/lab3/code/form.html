@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WTL Lab0</title>
+		<link rel="stylesheet" href="./style/style.css" />
+	</head>
+	<body>
+		<script src="./script/form_validation.js"></script>
+		<sidebar
+			><input type="checkbox" id="hamburger" />
+			<div class="hamburger">
+				<label for="hamburger">&#9776;</label>
+			</div>
+			<div class="menu">
+				<h2>Navigations</h2>
+				<div>
+					<ul>
+						<li><a href="./index.html">Home</a></li>
+						<li><a href="./form.html">Register</a></li>
+						<li>
+							<a href="./blockVsNonBlock.html">B vs. Non-B</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</sidebar>
+		<main class="register">
+			<h1 class="title">Register</h1>
+			<form class="registration-form" action="#">
+				<table>
+					<tr>
+						<td>
+							<label for="username">Username</label>
+						</td>
+						<td><input type="text" name="username" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<span class="form-error" id="error:username"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="email">Email</label
+							>
+						</td>
+						<td><input type="text" name="email" /></td>
+					</tr><tr>
+						<td></td>
+						<td>
+							<span class="form-error" id="error:email"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="gender">Gender</label
+							></span>
+						</td>
+						<td>
+							<div class="radio-group">
+								<input
+									type="radio"
+									name="gender"
+									id="male"
+									value="male"
+								/><label for="male">Male</label>
+							</div>
+							<div class="radio-group">
+								<input
+									type="radio"
+									name="gender"
+									id="female"
+									value="female"
+								/><label for="female">Female</label>
+							</div>
+						</td>
+					</tr><tr>
+						<td></td>
+						<td>
+							<span class="form-error" id="error:gender">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="password">Password</label
+							>
+						</td>
+						<td><input type="password" name="password" /></td>
+					</tr><tr>
+						<td></td>
+						<td>
+							<span
+								class="form-error"
+								id="error:password"
+							></span>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<button
+								type="button"
+								onclick="register_user()"
+								class="btn-primary"
+							>
+								Register
+							</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</main>
+	</body>
+</html>
