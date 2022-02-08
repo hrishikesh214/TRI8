@@ -1,7 +1,7 @@
 /**
  * @file code.cpp
  * @author PE06 Hrishikesh Vaze
- * @brief Tut3 - knapsack problem (fractional) using greedy approach
+ * @brief Tut7 - Randomized Quick Sort
  *
  */
 
